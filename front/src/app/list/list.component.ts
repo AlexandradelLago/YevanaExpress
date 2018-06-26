@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import vanList from '../vans';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +8,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  vans: Object[];
+  newVan: Object = {};
 
+  constructor() { }
+  
   ngOnInit() {
+    this.vans = vanList;
+  }
+
+  onSubmit(event){
+    event.preventDefault();
+  }
+
+  addContact(){
+    console.log("Add contact has been called");
+
+     this.vans.push(this.newVan);
+     console.log(this.vans);
+     this.newVan = {};
+    // add contact to contacts list
+    // clear inputs
   }
 
 }
+
+
+
+
+
+
+ 

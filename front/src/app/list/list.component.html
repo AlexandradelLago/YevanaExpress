@@ -1,3 +1,18 @@
-<p>
-  list works!
-</p>
+<h1>
+    My Vans
+  </h1>
+  
+  <section class="contactlist">
+    <div class="contact" *ngFor= "let van of vans">
+  
+      <p>{{van.name}}</p>
+      <p>{{van.description}}</p>
+      <p>motor {{van.features.motor}}</p>
+      <img src="{{van.image}}" alt="imagen de van">
+       
+    
+    </div>
+  
+    <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+
+  </section>
