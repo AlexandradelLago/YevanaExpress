@@ -1,9 +1,12 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express'),
+    router = express.Router(),
+    path = require("path");
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+var absPath = path.join(__dirname, "../../app");
+
+// route to handle home page
+router.get('/', function (req, res, next) {
+    res.sendFile(absPath + "/app.html");
 });
 
 module.exports = router;
