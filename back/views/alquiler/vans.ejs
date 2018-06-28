@@ -1,0 +1,10 @@
+<!-- alquiler/vans.ejs -->
+
+<ul>
+        <% items.forEach((item) => { %>
+          <li>
+            <%= item.brand %>  
+            <%= item.description.short %>
+          </li>
+        <%  }) %>
+      </ul>

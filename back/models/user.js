@@ -3,16 +3,20 @@ Schema = mongoose.Schema,
 objectId = mongoose.Schema.ObjectId;
 
 var userSchema = new Schema({
-    _id: { type: objectId, auto: true },
-    name: { type: String, required: true },
-    contactNo: { type: String, required: true },
-    address: { type: String, required: true }
-}, {
-    versionKey: false
+    password: { type: String, required: [true, 'Please enter your password'],
+    minlength: [6, 'Name must be greater than 6 characters']},
+    email:{type:String,match: /.+@.+/, required:[true, 'Please enter your email']},
+    username: { type: String, default: "ADMIN" },
+    name:{type:String, default: "ADMIN"},
+    role:{
+        type:String,
+        enum:["USER", "COLABORATOR", "ADMIN"],
+        default: "ADMIN"
+    },
 });
 
-var user = mongoose.model('users', userSchema);
+var User = mongoose.model('User', userSchema);
 
-module.exports = user;
+module.exports = User;
 
 
