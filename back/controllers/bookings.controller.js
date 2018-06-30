@@ -18,7 +18,7 @@ exports.postBooking = (req, res, next)=>{
     console.log(req.body)
     var result = moment(req.body.endDate,"YYYY-MM-DD" ).diff(req.body.startDate,"YYYY-MM-DD" )
     var days = moment.duration(result);
-    var finalResult = hours.asDays();
+    var finalResult = days.asDays();
     //finalResult = Math.round(finalResult)
     console.log("ESTOY AQUI")
 
@@ -29,8 +29,10 @@ exports.postBooking = (req, res, next)=>{
             endDate: req.body.endDate,
             //total: 50,
             _van : req.body._van,
-            _creator : req.user._id
+            _user : req.user._id
         });
+
+        // total            : { type: Number, required:true},
 
         newBooking.save()
         .then(newBookingCreated=>{
