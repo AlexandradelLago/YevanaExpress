@@ -29,10 +29,35 @@ exports.postBooking = (req, res, next)=>{
      var date2_ms = Date.parse(req.body.startDate);
      // Calculate the difference in milliseconds and convert back to days 
      var totalDays = Math.round(Math.abs(date1_ms - date2_ms)/ONE_DAY)
+     
 
-     console.log(totalDays)
+     var start = new Date(req.body.startDate);
+     var startDay = start.getDay();
+     var startMonth = start.getMonth();
+     var startYear = start.getYear ();
+     console.log("ESTOY AQUI")
+     //console.log(start.getDay())
+     console.log(startYear)
 
-     //console.log (Season.find({date = req.body.startDate}));
+     var end = new Date(req.body.endDate)
+     var endDay = end.getDay();
+     var endMonth = end.getMonth();
+     var endYear = end.getYear ();
+     var seasonDays=[]
+    // var seasonMonths = [];
+    console.log("antes de season")
+    Season.find().then(seasons =>{
+        seasons[0].dateSeason.forEach(d=>{
+            let tDate = new Date (d);
+            seasonDays.push(tDate.getDay());
+            seasonMonths.push(tDate.getMonth());
+            seasonYear.push(tDate.getYear());
+            console.log(seasonDays)
+        })
+    });
+   console.log("antes de nuevo array de seasonDays")
+     console.log (seasonDays);
+     //console.log (Season.find({ "new Date(date).getDay()" : start.getDay()}));
 
     Van.findById(req.body._van)
     .then(car => {
